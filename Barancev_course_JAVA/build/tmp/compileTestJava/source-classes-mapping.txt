@@ -1,0 +1,2 @@
+com/barancev/MyFirstTest.java
+ com.barancev.MyFirstTest
