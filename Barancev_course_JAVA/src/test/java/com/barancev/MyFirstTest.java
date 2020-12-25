@@ -1,15 +1,16 @@
 package com.barancev;
 
-import org.junit.Assert;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
+
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import static org.openqa.selenium.support.ui.ExpectedConditions.titleIs;
 
 public class MyFirstTest {
 
@@ -25,9 +26,14 @@ public class MyFirstTest {
 
     @Test
     public void myFirstTest(){
-
-        driver.get("http://www.google.com/");
+        driver.navigate().to("http://www.google.com/");
         driver.findElement(By.name("q")).sendKeys("webdriver", Keys.ENTER);
-        wait = new WebDriverWait(driver, 10);
+        wait.until(titleIs("webdriver - Поиск в Google"));
+    }
+
+    @After
+    public void stop() {
+        driver.quit();
+        driver = null;
     }
 }
